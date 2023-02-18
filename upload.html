@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="upload.css">
+    <style>
+      body {
+        font-family: sans-serif;
+        background-color: #f5f5f5;
+      }
+      
+      .container {
+        width: 80%;
+        margin: auto;
+        padding: 10px;
+        background-color: #fff;
+      }
+  
+      .hostel-list {
+        list-style-type: none;
+        padding: 0;
+        margin: 0;
+      }
+  
+      .hostel-list li {
+        margin-left: 0;
+      }
+  
+      .hostel-list li a {
+        display: block;
+        padding: 8px;
+        text-decoration: none;
+      }
+  
+      .hostel-list li a:hover {
+        background-color: #f0f0f0;
+      }
+  
+      .hostel-image {
+        width: 50%;
+        float: left;
+        margin-right: 10px;
+      }
+  
+      .hostel-details {
+        width: 50%;
+        float: right;
+        padding: 10px;
+      }
+
+      select {
+        font-size: 1.2em;
+        padding: 5px;
+        width: 200px;
+        border-radius: 5px;
+        border: 1px solid #4CAF50;
+        background-color: #D3D3D3;
+      }
+    
+      label {
+        font-size: 1.2em;
+        color: #000000;
+        padding: 5px;
+      }
+    
+      input {
+        padding: 5px;
+        margin-top: 5px;
+        width: 200px;
+        border-radius: 5px;
+        border: 1px solid #4CAF50;
+        background-color: #D3D3D3;
+      }
+    
+      input[type="submit"] {
+        font-size: 1.2em;
+        color: transparent;
+        background-color: #FF0000;
+        border: none;
+        padding: 5px;
+        width: 200px;
+        margin-top: 10px;
+      }
+    </style>
+</head>
+<body>
+    <div class="container">
+      <h1>Hostel Tour Website</h1>
+      <p>Welcome to our Hostel Tour Website! Here, you can view images of hostels from around the Your school and get a good feel for what the hostel is like before you rent it.</p>
+      <h2>Hostel Listings</h2>
+      <ul class="hostel-list">
+        <input type="button" onclick="window.location.href='hs1room.html';" value="Hostel 1"/><br>
+        <input type="button" onclick="window.location.href='hs1room.html';" value="Hostel 2"/><br>
+        <input type="button" onclick="window.location.href='hs1room.html';" value="Hostel 3"/><br>
+      </ul>
+    </div>
+
+    <div class="hostel-container" style="display:none;">
+      <div class="hostel-image">
+        <img src="" alt="hostel image" />
+      </div>
+      <div class="hostel-details">
+        <h2>Hostel Name</h2>
+        <p>
+          Detailed description about the hostel, including information about the location, amenities, and other features.
+        </p>
+      </div>
+    </div>
+
+    <script>
+      //query selector to get all the hostel list links
+      let hostelLinks = document.querySelectorAll('.hostel-list a');
+
+      //add an event listener to each link
+      hostelLinks.forEach(link => {
+        link.addEventListener('click', e => {
+          let href = e.target.getAttribute('href');
+          let hostelContainer = document.querySelector('.hostel-container');
+          let hostelImage = hostelContainer.querySelector('img');
+          let hostelDetails = hostelContainer.querySelector('.hostel-details');
+
+          //make an ajax request to get the data for the hostel
+          fetch(href)
+            .then(response => response.json())
+            .then(data => {
+              //update the hostel image and details
+              hostelImage.setAttribute('src', data.image);
+              hostelDetails.innerHTML = `
+                <h2>${data.name}</h2>
+                <p>${data.details}</p>
+              `;
+
+              //show the hostel container
+              hostelContainer.style.display = 'block';
+            });
+        });
+      });
+    </script>
+</body>
+</html>

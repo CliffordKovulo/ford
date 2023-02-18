@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        function payWithMPESA(){
+            var phoneNumber = prompt("Please enter your phone number");
+            var transactionID = prompt("Please enter your transaction ID");
+            alert("You will be redirected to MPESA Payment Portal");
+        }
+    
+        function payWithBank(){
+            var bankName = prompt("Please enter your bank name");
+            var accountNumber = prompt("Please enter your account number");
+            alert("You will be redirected to Bank Payment Portal");
+        }
+        </script>
+        <link rel="stylesheet" href="tours.css">
+    
+</head>
+<body>
+    <h1>Welcome to the Hostel Booking Site!</h1>
+    <p>We offer a variety of cozy and budget-friendly hostel booking options to suit your needs. </p>
+    <h2>Select Your Hostel</h2>
+    <div>
+        <img src="hostel1.jpg" alt="Hostel 1" style="width:200px;height:150px;">
+        <img src="hostel2.jpg" alt="Hostel 2" style="width:200px;height:150px;">
+        <img src="hostel3.jpg" alt="Hostel 3" style="width:200px;height:150px;">
+        <img src="hostel4.jpg" alt="Hostel 4" style="width:200px;height:150px;">
+    </div>
+    <form method="post" action="hostel_booking.php">
+        <select name="hostel_name">
+            <option value="hostel1">Hostel 1</option>
+            <option value="hostel2">Hostel 2</option>
+            <option value="hostel3">Hostel 3</option>
+            <option value="hostel4">Hostel 4</option>
+        </select>
+        <h2>Enter Your Details</h2>
+        <label>Name: </label>
+        <input type="text" name="name" required>
+        <label>Email: </label>
+        <input type="email" name="email" required>
+        <label>Number of Guests: </label>
+        <input type="number" name="guests" required>
+        <input type="submit" value="Book Now!">
+    </form>
+
+    <h2>Select Payment Method</h2>
+    <form>
+        <input type="button" onclick="payWithMPESA()" value="MPESA Payment">
+        <input type="button" onclick="payWithBank()" value="Bank Payment">
+    </form>
+
+</body>
+</html>
